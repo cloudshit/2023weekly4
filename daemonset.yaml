@@ -1,9 +1,8 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: DaemonSet
 metadata:
   name: hello
 spec:
-  replicas: 3
   selector:
     matchLabels:
       app: hello
@@ -11,12 +10,7 @@ spec:
     metadata:
       labels:
         app: hello
-        v1: c
     spec:
       containers:
       - name: hello
         image: nginxdemos/hello:plain-text
-        lifecycle:
-          preStop:
-            exec:
-              command: ["/bin/sh", "-c", "sleep 20"]

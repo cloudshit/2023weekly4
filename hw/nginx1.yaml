@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx1
+  template:
+    metadata:
+      labels:
+        app: nginx1
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/os
+                operator: In
+                values:
+                - linux
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 1
+              preference:
+                matchExpressions:
+                - key: eks.amazonaws.com/nodegroup
+                  operator: In
+                  values:
+                    - app
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - nginx2
+              topologyKey: topology.kubernetes.io/zone
+      containers:
+      - name: nginx1
+        image: nginxdemos/hello:plain-text

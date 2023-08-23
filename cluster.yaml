@@ -6,13 +6,13 @@ metadata:
   version: "1.26"
 
 vpc:
-  id: vpc-092b64483e4661a84
+  id: vpc-05793a9bfe5f5bd92
   subnets:
     private:
       a:
-        id: subnet-0f9ffae879c28da09
+        id: subnet-07c46bcd272de86dc
       b:
-        id: subnet-023d807bfb3bca7d6
+        id: subnet-03407126daeb6018b
 
 managedNodeGroups:
   - instanceType: t3.small

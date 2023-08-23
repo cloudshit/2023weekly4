@@ -2,14 +2,14 @@ apiVersion: v1
 kind: Service
 metadata:
   name: hello
-  annotations:
-    service.beta.kubernetes.io/aws-load-balancer-subnets: subnet-023d807bfb3bca7d6,subnet-0f9ffae879c28da09
+  labels:
+    app: hello
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: hello
   ports:
     - name: http
-      port: 8080
+      port: 80
       protocol: TCP
       targetPort: 80

@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+    env: dev
+spec:
+  containers:
+    - image: nginxdemos/hello:plain-text
+      name: nginx
+  affinity:
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: app
+            operator: In
+            values:
+              - mysql
+          - key: env
+            operator: In
+            values:
+              - dev
+        topologyKey: eks.amazonaws.com/nodegroup
