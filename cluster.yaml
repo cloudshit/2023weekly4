@@ -6,13 +6,19 @@ metadata:
   version: "1.26"
 
 vpc:
-  id: vpc-05793a9bfe5f5bd92
+  id: vpc-0a09ccb20b05a7d83
   subnets:
     private:
       a:
-        id: subnet-07c46bcd272de86dc
+        id: subnet-001d01e275f3db94a
       b:
-        id: subnet-03407126daeb6018b
+        id: subnet-0624f7d4d30fbf26b
+
+privateCluster:
+  enabled: true
+  additionalEndpointServices:
+    - "autoscaling"
+    - "logs"
 
 managedNodeGroups:
   - instanceType: t3.small

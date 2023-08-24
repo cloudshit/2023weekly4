@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: b
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: b
+  template:
+    metadata:
+      labels:
+        app: b
+    spec:
+      serviceAccountName: s3full
+      containers:
+      - name: b
+        image: amazon/aws-cli
+        command:
+          - sleep
+          - '999999999'

@@ -13,10 +13,12 @@ spec:
         app: hello
         v1: c
     spec:
+      readinessGates:
+        - conditionType: target-health.alb.ingress.k8s.aws/hello_hello_80
       containers:
       - name: hello
         image: nginxdemos/hello:plain-text
         lifecycle:
           preStop:
             exec:
-              command: ["/bin/sh", "-c", "sleep 20"]
+              command: ["sleep", "20"]

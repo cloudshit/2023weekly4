@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: a
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: a
+  template:
+    metadata:
+      labels:
+        app: a
+    spec:
+      serviceAccountName: s3read
+      containers:
+      - name: a
+        image: amazon/aws-cli
+        command:
+          - sleep
+          - '99999999'
